@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Persons </title>
+    <style>
+      body {
+        color: rgb(184, 74, 184);
+        text-align: center;
+        background-color: black;
+      }
+      table{color: rgb(255, 255, 255);}
+      table, th, td {
+  border:1px solid rgb(255, 255, 255);margin-left:auto;margin-right:auto;
+}
+.btn{background-color:rgb(147, 53, 147);color: beige;border: none;}
+label{color:rgb(255, 255, 255);}
+.btn1,.btn2{background-color:rgb(147, 53, 147);color: beige;border: none;}
+h1{ text-align: center;}
+form{
+
+  background-color: rgba(250, 235, 215, 0.056);
+  margin: 0 auto; 
+width:250px;
+}
+
+          
+      </style>
+  </head>
+  
+  <body>
+    <h1>People</h1>
+    <br><br>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Actions</th> <!-- add a new column for actions -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in people %}
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.age }}</td>
+            <td>{{ user.gender }}</td>
+            <td>
+              <!-- add a delete button for each user record -->
+              <form action="/delete/{{ user.id }}" method="post">
+                <button type="submit" class="btn2">Delete</button>
+              </form>
+              <a href="{{ url_for('update_user', user_id=user.id) }}">Update</a>
+            
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="6">No people found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br><br>
+   
+  <h1> put your info here !</h1>
+
+  <form  action="/submit" name="increaseData" method="post">  
+  <label> Name </label>         
+  <input type="text" name="name" size="20"/> <br> <br>   
+  <label> Email </label>         
+  <input type="text" name="email" size="19"/> <br> <br> 
+    <label>   
+  Gender:
+  <input type="text" id="gender" name="gender" size="20"/> <br> <br> 
+  <label>   
+      Age:
+  <input type="text" id="age" name="age" size="20"/> <br>    
+  <br>   
+  <a href="person-Interaction.html">
+  <input type="submit" class="btn1" name="btn1" value="new person "/> 
+</a>
+</form>
+
+
+
+
+
+
+
+
+  </body>
+</html>
